@@ -1,0 +1,31 @@
+function doGet(e) {
+    // Ganti dengan Spreadsheet ID Anda
+    var spreadsheetId = "13QsmuTgnovYJmQXiQd8vCJ-LAEdxd97ySkRLY_Ucyag"; 
+    var sheetName = "Sheet1";
+
+    // Buka spreadsheet dan sheet berdasarkan nama
+    var sheet = SpreadsheetApp.openById(spreadsheetId).getSheetByName(sheetName);
+
+    if (!sheet) {
+        return ContentService.createTextOutput("Sheet not found");
+    }
+
+    // Ambil parameter
+    var mode = e.parameter.mode || "realtime"; // Default: realtime
+    var temperature = e.parameter.temperature || "N/A";
+    var humidity = e.parameter.humidity || "N/A";
+
+    if (mode === "realtime") {
+        // Tampilkan data di satu sel tetap
+        sheet.getRange("A1").setValue("Suhu (°C)");
+        sheet.getRange("B1").setValue("Kelembapan (%)");
+        sheet.getRange("A2").setValue(temperature); // Update suhu di A2
+        sheet.getRange("B2").setValue(humidity);    // Update kelembapan di B2
+    } else if (mode === "historical") {
+        // Tambahkan data ke baris baru
+        var row = [new Date(), temperature, humidity];
+        sheet.appendRow(row);
+    }
+
+    return ContentService.createTextOutput("Success");
+}
