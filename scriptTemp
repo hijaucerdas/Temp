@@ -1,6 +1,6 @@
 function doGet(e) {
     // Ganti dengan Spreadsheet ID Anda
-    var spreadsheetId = "13QsmuTgnovYJmQXiQd8vCJ-LAEdxd97ySkRLY_Ucyag"; 
+    var spreadsheetId = "13QsmuTgnovYJmQXiQd8vCJ-LAEdxd97ySkRLY_Ucy"; 
     var sheetName = "Sheet1";
 
     // Buka spreadsheet dan sheet berdasarkan nama
